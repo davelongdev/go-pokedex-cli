@@ -23,6 +23,16 @@ func TestCleanInput(t *testing.T) {
 	"world",
       },
     },
+    {
+      input: " ",
+      expected: []string{},
+    },
+    {
+      input: "world",
+      expected: []string{
+	"world",
+      },
+    },
   }
   for _, cs := range cases {
     actual := cleanInput(cs.input)
