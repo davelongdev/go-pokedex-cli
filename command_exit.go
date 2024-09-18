@@ -4,6 +4,7 @@ import(
   "os"
 )
 
-func calbackExit() {
-	os.Exit(0)
+func callbackExit() error {
+  os.Exit(0)
+  return nil
 }
