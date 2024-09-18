@@ -30,6 +30,7 @@ func startRepl() {
     fmt.Println("invalid command")
       continue
     }
+
     command.callback()
   }
 }
