@@ -11,9 +11,52 @@ func startRepl() {
   scanner := bufio.NewScanner(os.Stdin)
   for {
     fmt.Printf("Pokedex > ")
+
     scanner.Scan()
     text := scanner.Text()
-    fmt.Printf("echoing: %v\n", text)
+
+    cleaned := cleanInput(text)
+    if len(cleaned) == 0 {
+      continue
+    }
+
+    comand := cleaned[0]
+
+    switch comand{
+      case "help":
+	fmt.Println("welcome to the pokedex help menu")
+	fmt.Println("here are your available commands")
+	fmt.Println(" - help")
+	fmt.Println(" - exit")
+	fmt.Println("")
+    
+      case "exit":
+	os.Exit(0)
+      default:
+    fmt.Println("invalid command")
+    }
+
+  }
+}
+
+type cliCommand struct {
+  name		  string
+  description	  string
+  callback	  func() error
+}
+
+func getCommands() map[string]cliCommand {
+  return map[string]cliCommand{
+    "help": {
+      name: "help",
+      description: "prints the help menu",
+      callback: callbackHelp,
+    },
+    "exit": {
+	name: "exit",
+	description: "turns off pokidex",
+	callback: callbackExit,
+    },
   }
 }
 
