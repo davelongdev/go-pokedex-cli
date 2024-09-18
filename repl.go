@@ -31,7 +31,10 @@ func startRepl() {
       continue
     }
 
-    command.callback()
+    err := command.callback()
+    if err != nil {
+      fmt.Println(err)
+    }
   }
 }
 
