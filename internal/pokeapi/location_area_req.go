@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
-	"golang.org/x/tools/go/analysis/passes/defers"
 )
 
 func (c *Client) ListLocationAreas() (LocationAreasResponse, error){
